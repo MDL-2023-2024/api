@@ -12,25 +12,25 @@ class Qualite
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $libelleQualite = null;
+    private ?string $libellequalite = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLibelleQualite(): ?string
+    public function getLibellequalite(): ?string
     {
-        return $this->libelleQualite;
+        return $this->libellequalite;
     }
 
-    public function setLibelleQualite(string $libelleQualite): static
+    public function setLibellequalite(string $libellequalite): static
     {
-        $this->libelleQualite = $libelleQualite;
+        $this->libellequalite = $libellequalite;
 
         return $this;
     }
