@@ -4,8 +4,12 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\LicencieRepository;
+use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Types;
+use App\Type\OracleDateType;
 use Doctrine\ORM\Mapping as ORM;
+
+Type::addType('dateoracle', 'OracleDateType');
 
 #[ORM\Entity(repositoryClass: LicencieRepository::class)]
 #[ApiResource]
@@ -16,7 +20,7 @@ class Licencie
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'numlicence')]
     private ?int $numLicence = null;
 
     #[ORM\Column(length: 70)]
@@ -43,16 +47,16 @@ class Licencie
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $mail = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: 'dateoracle', name: 'dateadhesion')]
     private ?\DateTimeInterface $dateAdhesion = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Club $idClub = null;
+    #[ORM\JoinColumn(nullable: false, name: 'idClub')]
+    private ?Club $idclub = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Qualite $idQualite = null;
+    #[ORM\JoinColumn(nullable: false, name: 'idQualite')]
+    private ?Qualite $idqualite = null;
 
     public function getId(): ?int
     {
@@ -186,26 +190,26 @@ class Licencie
         return $this;
     }
 
-    public function getIdClub(): ?Club
+    public function getidclub(): ?Club
     {
-        return $this->idClub;
+        return $this->idclub;
     }
 
-    public function setIdClub(?Club $idClub): static
+    public function setidclub(?Club $idclub): static
     {
-        $this->idClub = $idClub;
+        $this->idclub = $idclub;
 
         return $this;
     }
 
     public function getIdQualite(): ?Qualite
     {
-        return $this->idQualite;
+        return $this->idqualite;
     }
 
-    public function setIdQualite(?Qualite $idQualite): static
+    public function setIdQualite(?Qualite $idqualite): static
     {
-        $this->idQualite = $idQualite;
+        $this->idqualite = $idqualite;
 
         return $this;
     }
