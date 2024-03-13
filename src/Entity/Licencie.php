@@ -9,8 +9,6 @@ use Doctrine\DBAL\Types\Types;
 use App\Type\OracleDateType;
 use Doctrine\ORM\Mapping as ORM;
 
-Type::addType('dateoracle', 'OracleDateType');
-
 #[ORM\Entity(repositoryClass: LicencieRepository::class)]
 #[ApiResource]
 class Licencie
