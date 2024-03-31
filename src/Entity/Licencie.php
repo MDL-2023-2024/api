@@ -2,7 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\NumericFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Repository\LicencieRepository;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Types;
@@ -10,7 +17,7 @@ use App\Type\OracleDateType;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LicencieRepository::class)]
-#[ApiResource]
+#[ApiResource()]
 class Licencie
 {
     #[ORM\Id]
@@ -19,6 +26,7 @@ class Licencie
     private ?int $id = null;
 
     #[ORM\Column(name: 'numlicence')]
+    #[ApiFilter(NumericFilter::class)]
     private ?int $numLicence = null;
 
     #[ORM\Column(length: 70)]
